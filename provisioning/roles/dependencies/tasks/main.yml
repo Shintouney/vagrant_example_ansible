@@ -1,0 +1,55 @@
+- name: "installing tmux"
+  apt: pkg=tmux state=present
+
+- name: "git-core"
+  apt: pkg=git-core state=present
+
+- name: "installing git"
+  apt: pkg=git state=present
+
+- name: "installing curl"
+  apt: pkg=curl state=present
+
+- name: "installing build-essential"
+  apt: pkg=build-essential state=present
+
+- name: "installing zlib1g-dev"
+  apt: pkg=zlib1g-dev state=present
+
+- name: "installing libssldev"
+  apt: pkg=libssl-dev state=present
+
+- name: "installing libreadline-dev"
+  apt: pkg=libreadline-dev state=present
+
+- name: "installing sqlite3 installing libsqlite3-dev"
+  apt: pkg=sqlite3 state=present
+  apt: pkg=libsqlite3-dev state=present
+
+
+- name: "installing libffi-dev"
+  apt: pkg=libffi-dev state=present
+
+- name: "installing libxml2-dev"
+  apt: pkg=libxml2-dev state=present
+
+- name: "installing libxml2-dev"
+  apt: pkg=libxml2-dev state=present
+
+- name: "installing libyaml-dev"
+  apt: pkg=libyaml-dev state=present
+
+- name: "installing libxstl1-dev"
+  apt: pkg=libxslt1-dev state=present
+
+- name: "installing libcurl4-openssl-dev"
+  apt: pkg=libcurl4-openssl-dev state=present
+
+- name: "installing install zsh"
+  apt: pkg=zsh state=present
+
+- name: "installing install gitflow"
+  apt: pkg=git-flow state=present
+
+- name: "installing install rcm"
+  apt: pkg=rcm state=present

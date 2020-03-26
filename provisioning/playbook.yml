@@ -1,0 +1,15 @@
+---
+- hosts:  voguemerry
+  become: true
+  roles:
+    - basic
+    - dependencies
+    - user
+  # TODO create new user
+  # give it default /bin/shell -> zsh
+  tasks:
+    - main: "Display current user"
+      command: echo $USER
+      register: display_user
+    # debug message
+    - debug: msg="{{ display_user.stdout }}"

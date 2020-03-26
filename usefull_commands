@@ -1,0 +1,74 @@
+edit the /etc/ssh/sshd_config
+publickey yes
+authorized_key yes
+passwordauth yes
+ssh-copy-id -i ~/.ssh/id_rsa.pub USER@HOST -p PORT
+[Enter user password]
+sudo apt install ansible
+gc -m "start learning vagrant and ansible"
+gc -m "start learning vagrant and ansible"
+ansible
+ansible --help
+ansible-inventory
+ansible-inventory --list
+ls /etc/ansible
+cp -R /etc/ansible .
+ls ansible
+vi ansible/hosts
+ls -lha ansible
+vi ansible/ansible.cfg
+vi ansible/hosts
+cd ansible
+ansible -m ping all
+mv ansible ..
+cd ansible
+ansible -m ping all
+ansible -m ping all
+vi ansible.cfg
+cd ansible
+ansible -m ping
+ansible -m ping -u vagrant all
+ansible -m ping -u vagrant all
+ansible -m ping -u vagrant all
+ansible -m ping -u vagrant all
+ansible --help
+ansible -m ping -u vagrant all
+cat ansible.cfg
+vi ansible.cfg
+cd ansible
+ansible -m ping -u vagrant all
+ansible -m ping -u vagrant all
+cd ansible
+cd ansible
+ansible -m ping -u vagrant all
+ansible -m shell -a 'hostname' all
+ansible -m ping -u vagrant all
+cd ansible
+ansible -m shell -a 'hostname' all
+ansible -m shell -a -u vagrant 'hostname' all
+ansible -m shell -a 'hostname' -u vagrant all
+ls ansible
+cd ansible
+vi ansible.cfg
+cd ansible
+ansible -m shell -a 'hostname' all
+ansible -m shell -a 'echo $USER' all
+ansible -m shell -a 'hostname' all
+ansible -m shell -a 'cat /etc/ssh/sshd_config' all
+ansible -m shell -a 'df -h' all
+ansible -m shell -a 'whoami' all
+ansible --help
+ansible -b -K -m user -a "name=testuser" all
+cd ansible
+ansible -m shell -a 'hostname' voguemerrydb
+ansible -m shell -a 'hostname' all
+ansible -b -K -m user -a "name=testdb" voguemerrydB
+ansible -b -K -m vagrant -a "name=testdb" voguemerrydB
+ansible --help
+ansible -m shell -a 'getenv passwd | grep "testuser"' voguemerrydb
+ansible -m shell -a 'getenv passwd | grep testuser' voguemerrydb
+ansible -m shell -a 'getent passwd | grep testuser' voguemerrydb
+ansible -m shell -a 'getent passwd' voguemerrydb
+ansible -m shell -a 'getent passwd' all
+ansible -m shell -a 'getent passwd | grep testuser' all
+ansible -m shell -a 'getent passwd | grep testuserdb' all

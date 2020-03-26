@@ -1,0 +1,45 @@
+- main: "Create admin user"
+  user: name=soulphysician
+        state=present
+        groups="sudo"
+        shell="/bin/zsh"
+        password=riveton
+        comment="Main user for operating on apps"
+
+- name: "create directory if it does not exist"
+  become_user: "{{ main_username  }}"
+  file:
+    path: "/home/{{ main_username }}/.ssh"
+    state: directory
+
+- name: "create zshrc file"
+  become_user: "{{ main_username  }}"
+  file:
+    path: "/home/{{ main_username }}/.zshrc"
+    state: touch
+
+- name: "create empty file"
+  become_user: "{{ main_username  }}"
+  file:
+    path: "/home/{{ main_username }}/.ssh/authorized_keys"
+    state: touch
+
+- name: "put publickey"
+  become_user: "{{ main_username  }}"
+  lineinfile:
+    path: "/home/{{main_username}}/.ssh/authorized_keys"
+    line: "{{ pubkey }}"
+
+- git:
+    repo: git://github.com/robbyrussell/oh-my-zsh.git
+    dest: "/home/{{main_username}}/.oh-my-zsh"
+
+- git:
+    repo: https://github.com/Shintouney/soul_physician_dotfiles.git
+    dest: "/home/{{main_username}}/.dotfiles"
+
+- name: "add directory permissions"
+  command: chown -R soulphysician:soulphysician /home/soulphysician/.oh-my-zsh
+
+- name: "add directory permissions"
+  command: chown -R soulphysician:soulphysician /home/soulphysician/.dotfiles

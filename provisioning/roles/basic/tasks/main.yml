@@ -1,0 +1,52 @@
+- main: "generate the server locale"
+  locale_gen: name={{ locale }} state=present
+
+- name: "add rcm repository martin frost thoughbot"
+  apt_repository:
+    repo: 'ppa:martin-frost/thoughtbot-rcm'
+    state: present
+
+- name: "Update and upgrade apt packages"
+  become: true
+  apt: update_cache=yes force_apt_get=yes cache_valid_time=3600
+
+- name: "set locale"
+  lineinfile: dest=/etc/default/locale regexp=\'^LANG\' line=\'LINE={{ locale }}\'
+
+- name: "reload locale"
+  raw: . /etc/default/locale
+
+- name: "Installing vim"
+  apt: pkg=vim state=present
+
+- name: "Installing python"
+  apt: pkg=python state=present
+
+# SSHD_CONFIG
+- name: "Password based logins are disabled - only public key based logins are allowed."
+  lineinfile: dest=/etc/ssh/sshd_config regexp='^#?PasswordAuthentication' line='PasswordAuthentication no'
+- lineinfile: dest=/etc/ssh/sshd_config regexp='^#?PubkeyAuthentication' line='PubkeyAuthentication yes'
+- lineinfile: dest=/etc/ssh/sshd_config regexp='^#?AuthorizedKeysFile' line='AuthorizedKeysFile .ssh/authorized_keys .ssh/authorized_keys2'
+
+# LogLevel VERBOSE logs user's key fingerprint on login. Needed to have a clear audit track of which key was using to log in.
+- lineinfile: dest=/etc/ssh/sshd_config regexp='^LogLevel' line='LogLevel VERBOSE'
+
+- name: "restart service ssh in all cased"
+  service:
+    name: ssh
+    state: restarted
+
+- name: directory
+  file:
+    path: /home/vagrant/.ssh
+    state: directory
+
+- name: create empty file
+  file:
+    path: /home/vagrant/.ssh/authorized_keys
+    state: touch
+
+- name: put publickey
+  lineinfile:
+    path: "/home/vagrant/.ssh/authorized_keys"
+    line: "{{ pubkey }}"
